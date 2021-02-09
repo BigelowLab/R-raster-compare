@@ -32,5 +32,15 @@ read_stack <- function(filename = sst_file,
          "terra" = terra::rast(filename[1]),
          "stars" = stars::read_stars(filename[1]),
          raster::stack(filename[1]))
+}
 
+#' Convert sf::sf object to terra::SpatVector
+#' 
+#' You will need this to use terra::extract()
+#' 
+#' @param x sf object
+#' @return SpatVector object
+sf_to_SpatVector <- function(x){
+  as(x, "Spatial") %>% 
+    terra::vect()
 }

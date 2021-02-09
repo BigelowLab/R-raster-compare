@@ -15,12 +15,15 @@ library(stars)
 #JPL MUR MEaSUREs Project. 2015. GHRSST Level 4 MUR Global Foundation Sea Surface Temperature Analysis. Ver. 4.1. PO.DAAC, CA, USA. Dataset accessed [2021-02-08] at https://doi.org/10.5067/GHGMR-4FJ04
 
 penbay_bb <- c(-69.2, -68.49, 43.78, 44.5)
-stack_file <- "20140601-20140630.tif"
+sst_file <- "20140601-20140630-sst.tif"
+slope_file <- "20140601-20140630-sst_slope.tif"
+cum_file <- "20140601-20140630-sst_cum.tif"
 
 #' Read in a stack of images
 #'
 #' @param filename the name of the file to read
 #' @param form character, one of 'raster', 'terra' or 'stars'
+#' @return RasterStack, terra or stars object
 read_stack <- function(filename = stack_file,
                        form = c("raster", "terra", "stars")[1]){
 

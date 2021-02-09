@@ -24,7 +24,7 @@ cum_file <- "20140601-20140630-sst_cum.tif"
 #' @param filename the name of the file to read
 #' @param form character, one of 'raster', 'terra' or 'stars'
 #' @return RasterStack, terra or stars object
-read_stack <- function(filename = stack_file,
+read_stack <- function(filename = sst_file,
                        form = c("raster", "terra", "stars")[1]){
 
   stopifnot(file.exists(filename[1]))

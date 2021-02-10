@@ -1,6 +1,6 @@
 # Layer names
 
-**Question** - how do you extract the set/get names for layers in a stack?  
+**Question** - how do you set/get names for layers in a stack?  
 
 ```
 source("setup.R")
@@ -67,7 +67,6 @@ star <- star %>%
                            point = FALSE)
 
 # get layer values
-
 str(stars::st_get_dimension_values(star, 'dates'))
 # Date[1:30], format: "2014-06-01" "2014-06-02" "2014-06-03" "2014-06-04" "2014-06-05" "2014-06-06" ...
 ```

@@ -23,9 +23,9 @@ One month of daily MUR SST rasters (as one GeoTIFF) from 2014 covering Penobscot
 
 > JPL MUR MEaSUREs Project. 2015. GHRSST Level 4 MUR Global Foundation Sea Surface Temperature Analysis. Ver. 4.1. PO.DAAC, CA, USA. Dataset accessed [2021-02-08] at https://doi.org/10.5067/GHGMR-4FJ04
 
-100 points within Penobscot Bay, selected at random, stored in [geopackage](https://www.geopackage.org/) format. Use `sf::read_sf("penbay-points.gpkg")` to read them in.
+100 points within Penobscot Bay, selected at random, stored in [geopackage](https://www.geopackage.org/) format. Use `sf::read_sf("data/penbay-points.gpkg")` to read them in.
 
-A single polygon within Penobscot Bay stored in [geopackage](https://www.geopackage.org/) format.  Use `sf::read_sf(p, "penbay-polygon.gpkg")` to read it in.
+A single polygon within Penobscot Bay stored in [geopackage](https://www.geopackage.org/) format.  Use `sf::read_sf(p, "data/penbay-polygon.gpkg")` to read it in.
 
 # Provided functionality
 

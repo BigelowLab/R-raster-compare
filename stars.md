@@ -77,3 +77,5 @@ star <- stars::read_stars(ff) %>%
 # y        1 72     44.505  -0.01 WGS 84 FALSE   NULL [y]
 # dates    1 30 2014-06-01 1 days   Date FALSE   NULL
 ```
+
+We have a function to do the above.  See `read_mstar()` in `setup.R`. 

@@ -1,6 +1,6 @@
 # Layer names
 
-**Question** - how do you set/get names for layers in a stack?  
+**Question** - how do you set/get names for **layers** (aka bands) in a stack?  
 
 ```
 source("setup.R")

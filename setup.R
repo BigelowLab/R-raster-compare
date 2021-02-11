@@ -15,9 +15,9 @@ library(stars)
 #JPL MUR MEaSUREs Project. 2015. GHRSST Level 4 MUR Global Foundation Sea Surface Temperature Analysis. Ver. 4.1. PO.DAAC, CA, USA. Dataset accessed [2021-02-08] at https://doi.org/10.5067/GHGMR-4FJ04
 
 penbay_bb <- c(-69.2, -68.49, 43.78, 44.5)
-sst_file <- "20140601-20140630-sst.tif"
-slope_file <- "20140601-20140630-sst_slope.tif"
-cum_file <- "20140601-20140630-sst_cum.tif"
+sst_file <- "data/20140601-20140630-sst.tif"
+slope_file <- "data/20140601-20140630-sst_slope.tif"
+cum_file <- "data/20140601-20140630-sst_cum.tif"
 
 #' Read in a stack of images
 #'
@@ -43,19 +43,38 @@ read_stack <- function(filename = sst_file,
            },
          "stars" =  
            {
-             stars::read_stars(filename[1]) 
-             if (apply_names) star <- stars::st_set_dimensions(star,
+             x <- stars::read_stars(filename[1]) 
+             if (apply_names) x <- stars::st_set_dimensions(x,
                                                                which = "band", 
                                                                values = dates, 
                                                                names = "dates", 
                                                                point = FALSE)
-             star
+             x
            },
-         { x <- raster::stack(filename[1])
+         { 
+           x <- raster::stack(filename[1])
            if (apply_names) names(x) <- layer_names
-           x })
+           x 
+         })
 }
 
+
+
+#' Read a multi-attribute stars object
+#' 
+#' @return a multi-attribute multi-band stars object
+read_mstar <- function(){
+  dates <- seq.Date(from = as.Date("2014-06-01"), to = as.Date("2014-06-30"), by = "day")
+  mstar <- stars::read_stars(c(sst_file, slope_file, cum_file)) %>%
+    stars::st_set_dimensions(which = "band", 
+                             values = dates, 
+                             names = "dates", 
+                             point = FALSE)
+  names(mstar) <- c("sst", "slope", "cum")
+  mstar
+}
+
+ 
 #' Convert sf::sf object to terra::SpatVector
 #' 
 #' You will need this to use terra::extract()

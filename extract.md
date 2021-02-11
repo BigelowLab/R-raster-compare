@@ -9,7 +9,7 @@ source("setup.R")
 rast <- read_stack(sst_file, form = "raster")
 terr <- read_stack(sst_file, form = "terra")
 star <- read_stack(sst_file, form = "stars")
-pts <- sf::read_sf("penbay-points.gpkg")
+pts <- sf::read_sf(data/"penbay-points.gpkg")
 ```
 
 

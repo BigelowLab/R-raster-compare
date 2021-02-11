@@ -23,15 +23,30 @@ cum_file <- "20140601-20140630-sst_cum.tif"
 #'
 #' @param filename the name of the file to read
 #' @param form character, one of 'raster', 'terra' or 'stars'
+#' @param apply_names logical, if TRUE apply names to each band (layer)
 #' @return RasterStack, terra or stars object
 read_stack <- function(filename = sst_file,
-                       form = c("raster", "terra", "stars")[1]){
+                       form = c("raster", "terra", "stars")[1],
+                       apply_names = FALSE){
 
+  if (apply_names){
+    dates <- seq.Date(from = as.Date("2014-06-01"), to = as.Date("2014-06-30"), by = "day")
+    layer_names <- format(dates, "%b_%d")
+  }
   stopifnot(file.exists(filename[1]))
   switch(tolower(form[1]),
-         "terra" = terra::rast(filename[1]),
-         "stars" = stars::read_stars(filename[1]),
-         raster::stack(filename[1]))
+         "terra" = {
+           x <- terra::rast(filename[1])
+           if (apply_names) names(x) <- layer_names
+           x},
+         "stars" =  stars::read_stars(filename[1])%>%
+                      stars::st_set_dimensions(which = "band", 
+                                               values = dates, 
+                                               names = "dates", 
+                                               point = FALSE),
+         { x <- raster::stack(filename[1])
+           if (apply_names) names(x) <- layer_names
+           x })
 }
 
 #' Convert sf::sf object to terra::SpatVector

@@ -33,7 +33,7 @@ plot(poly, add = TRUE)
 
 par(opar)
 ```
-[three-with-polygon](images/three-with-polygon.png)
+![three-with-polygon](images/three-with-polygon.png)
 
 
 ### Bounding box

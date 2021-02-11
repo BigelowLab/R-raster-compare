@@ -35,15 +35,22 @@ read_stack <- function(filename = sst_file,
   }
   stopifnot(file.exists(filename[1]))
   switch(tolower(form[1]),
-         "terra" = {
-           x <- terra::rast(filename[1])
-           if (apply_names) names(x) <- layer_names
-           x},
-         "stars" =  stars::read_stars(filename[1])%>%
-                      stars::st_set_dimensions(which = "band", 
-                                               values = dates, 
-                                               names = "dates", 
-                                               point = FALSE),
+         "terra" = 
+           {
+             x <- terra::rast(filename[1])
+            if (apply_names) names(x) <- layer_names
+            x
+           },
+         "stars" =  
+           {
+             stars::read_stars(filename[1]) 
+             if (apply_names) star <- stars::st_set_dimensions(star,
+                                                               which = "band", 
+                                                               values = dates, 
+                                                               names = "dates", 
+                                                               point = FALSE)
+             star
+           },
          { x <- raster::stack(filename[1])
            if (apply_names) names(x) <- layer_names
            x })
